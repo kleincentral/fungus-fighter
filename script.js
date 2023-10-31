@@ -9,19 +9,6 @@ function onAttack(event, apCost, damage) {
     console.log(`Your attack cost ${apCost} and did ${damage} damage!`)
     playerAP -= apCost
     fungusHP -= damage
-
-    if (fungusHP <= 0){
-        fungusHP=0;
-        document.getElementById('fungus-animation').classList.replace('walk', 'dead')
-    }
-    if (playerAP <= apCost){
-        playerAP=0
-        let allButton = document.querySelectorAll('.attack-btn');
-        for (i=0; i<allButton.length; i++) {
-            allButton[i].setAttribute('disabled', '')
-        }
-        document.getElementById('fungus-animation').classList.replace('walk', 'jump')
-    }
     update()
 
 }
@@ -31,10 +18,21 @@ function onAttack(event, apCost, damage) {
 
 
 function update() {
+    console.log(playerAP)
+    if (fungusHP <= 0){
+        fungusHP=0;
+        document.getElementById('fungus-animation').classList.replace('walk', 'dead')
+    }
+    if (playerAP <= 0){
+        playerAP=0
+        let allButton = document.querySelectorAll('.attack-btn');
+        for (i=0; i<allButton.length; i++) {
+            allButton[i].setAttribute('disabled', '')
+        }
+        document.getElementById('fungus-animation').classList.replace('walk', 'jump')
+    }
     document.getElementById('ap').innerHTML = playerAP+' AP'
     document.getElementById('hp').innerHTML = fungusHP+' HP'
-    console.log(playerAP)
-
 }
 
 
